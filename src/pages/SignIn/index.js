@@ -11,8 +11,11 @@ import {
     Link,
     LinkText
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn(){
+    const navigation = useNavigation();
+    
     return(
         <Background>
             <Container
@@ -39,7 +42,7 @@ export default function SignIn(){
                     <SubmitText>Acessar</SubmitText>
                 </SubmitButton>
 
-                <Link>
+                <Link onPress={ () => navigation.navigate('SignUp') }>
                     <LinkText>Criar uma conta!</LinkText>
                 </Link>
 
