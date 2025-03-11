@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from 'react-native'
+import { Platform } from 'react-native'
 import { 
     Background, 
     Container, 
@@ -15,7 +15,10 @@ import {
 export default function SignIn(){
     return(
         <Background>
-            <Container>
+            <Container
+                behavior={Platform.OS === 'ios' ? 'padding' : ''}
+                enabled
+            >
                 <Logo
                     source={require('../../assets/Logo.png')}
                 />
@@ -32,7 +35,7 @@ export default function SignIn(){
                     />
                 </AreaInput>
 
-                <SubmitButton>
+                <SubmitButton activeOpacity={0.8}>
                     <SubmitText>Acessar</SubmitText>
                 </SubmitButton>
 
