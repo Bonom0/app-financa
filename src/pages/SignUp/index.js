@@ -18,6 +18,7 @@ export default function SignIn(){
     const [password, setPassword] = useState('');
 
     function handleSignUp(){
+        if(nome === '' || email === '' || password === '') return;
         signUp(nome, email, password);
     }
 
