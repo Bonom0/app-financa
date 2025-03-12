@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Platform } from 'react-native'
 import { 
     Background, 
@@ -8,8 +8,11 @@ import {
     SubmitButton, 
     SubmitText 
 } from '../SignIn/styles'
+import { AuthContext } from "../../contexts/auth";
 
 export default function SignIn(){
+    const { user } = useContext(AuthContext)
+    
     return(
         <Background>
             <Container
