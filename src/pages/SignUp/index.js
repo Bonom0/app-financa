@@ -11,10 +11,10 @@ import {
 import { AuthContext } from "../../contexts/auth";
 
 export default function SignIn(){
-    const { user } = useContext(AuthContext)
+    const { signUp } = useContext(AuthContext)
     
     function handleSignUp(){
-        console.log(user)
+        signUp();
     }
 
     return(
