@@ -13,6 +13,10 @@ import { AuthContext } from "../../contexts/auth";
 export default function SignIn(){
     const { user } = useContext(AuthContext)
     
+    function handleSignUp(){
+        console.log(user)
+    }
+
     return(
         <Background>
             <Container
@@ -38,7 +42,7 @@ export default function SignIn(){
                     />
                 </AreaInput>
 
-                <SubmitButton>
+                <SubmitButton onPress={handleSignUp}>
                     <SubmitText>Cadastrar</SubmitText>
                 </SubmitButton>
             </Container>
