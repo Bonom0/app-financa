@@ -7,10 +7,12 @@ function AuthProvider({ children }){
         nome: 'Caio Teste'
     })
 
-
+    async function signUp() {
+        
+    }
 
     return(
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider value={{ user, signUp }}>
             {children}
         </AuthContext.Provider>
     )
