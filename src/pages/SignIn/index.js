@@ -21,7 +21,7 @@ export default function SignIn(){
     const {password, setPassword} = useState('');
 
     function handleLogin(){
-        signIn();
+        signIn(email, password);
     }
 
     return(
