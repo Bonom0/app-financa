@@ -17,8 +17,8 @@ import { AuthContext } from "../../contexts/auth";
 export default function SignIn(){
     const navigation = useNavigation();
     const { signIn, loadingAuth} = useContext(AuthContext);
-    const {email, setEmail} = useState('');
-    const {password, setPassword} = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     function handleLogin(){
         signIn(email, password);
