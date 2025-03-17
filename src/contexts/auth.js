@@ -1,14 +1,42 @@
 import React, { createContext, useState, useEffect } from "react";
 import api from '../services/api';
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }){
     const [user, setUser] = useState(null);
     const [loadingAuth, setLoadingAuth] = useState(false);
+    const [loading, setLoadin] = useState(true);
 
     const navigation = useNavigation();
+
+    useEffect(() => {
+        async function loadStorage() {
+            const storageUser = await AsyncStorage.getItem('@finToken');
+
+            if(storageUser){
+                const response = await api.get('/me', {
+                    headers:{
+                        'Authorization': `Bearer ${storageUser}`
+                    }
+                })
+                .catch(() => {
+                    setUser(null);
+                })
+
+                api.defaults.headers['Authorization'] = `Bearer ${storageUser}`;
+                setUser(response.data);
+                setLoadin(false);
+            }
+
+            setLoadin(false);
+
+        }
+
+        loadStorage()
+    }, [])
 
     async function signUp(nome, email, password) {
         setLoadingAuth(true);
@@ -46,8 +74,10 @@ function AuthProvider({ children }){
                 email
             };
 
+            await AsyncStorage.setItem('@finToken', token); //salva no AsyncStorage com a chave @finToken o usuário que fez login
+
             api.defaults.headers['Authorization'] = `Bearer ${token}`; //informa ao axios que esse será o token utilizado nas próximas requisições
-            
+
             setUser({
                 id,
                 name,
@@ -62,7 +92,7 @@ function AuthProvider({ children }){
     }
 
     return(
-        <AuthContext.Provider value={{ signed: !!user, user, signUp, signIn, loadingAuth }}>
+        <AuthContext.Provider value={{ signed: !!user, user, signUp, signIn, loadingAuth, loading }}>
             {children}
         </AuthContext.Provider>
     )
