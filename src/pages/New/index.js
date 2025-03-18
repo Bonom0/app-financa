@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Background, Input, SubmitButton, SubmitText } from "./styles";
 import Header from '../../components/Header'
 import { SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import RegisterTypes from "../../components/RegisterTypes";
 
 export default function New(){
     const [labelInput, setLabelInput] = useState('');
@@ -25,6 +26,11 @@ export default function New(){
                         keyboardType="numeric"
                         value={valueInput}
                         onChangeText={ (text) => setValueInput(text) }
+                    />
+
+                    <RegisterTypes
+                        type={type}
+                        sendTypeChanged={ (item) => setType(item) }
                     />
 
                     <SubmitButton>
