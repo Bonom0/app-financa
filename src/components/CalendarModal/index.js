@@ -49,9 +49,10 @@ export default function CalendarModal({ setVisible, handleFilter }){
           markedDates={markedDates}
           enableSwipeMonths={true}
           theme={{
-            todayTextColor: '#FF0000',
+            todayTextColor: '#FFF',
             selectedDayBackgroundColor: '#00adf5',
-            selectedDayTextColor: '#FFF'
+            selectedDayTextColor: '#FFF',
+            todayBackgroundColor: '#FF0000'
           }}
         />
 
