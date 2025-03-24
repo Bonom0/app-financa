@@ -38,7 +38,8 @@ export default function SignIn(){
                     <Input
                         placeholder="Seu email"
                         value={email}
-                        onChangeText={ (text) => setEmail(text)}
+                        onChangeText={ (text) => setEmail(text.toLowerCase())}
+                        keyboardType="email-address"
                     />
                 </AreaInput>
 
